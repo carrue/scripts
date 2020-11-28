@@ -1,2 +1,2 @@
-# Powershell
-Poweshell Scripts I use for security reporting. 
+# What is it?
+Poweshell and Splunk scripts I use for security reporting. 
