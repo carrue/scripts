@@ -1,0 +1,12 @@
+index=* EventCode=4756
+| rex mode=sed field="Account_Name" "s/CN=//g"
+| rex mode=sed field="Account_Name" "s/cn=//g"
+| rex mode=sed field="Account_Name" "s/,OU.*//g"
+| rex mode=sed field="Account_Name" "s/\\\//g"
+| eval Message=split(Message,".")
+| eval Short_Message=mvindex(Message,0)
+| eval Subject_Security_ID = mvindex(Security_ID,0)
+| eval Member_Security_ID = mvindex(Security_ID,1)
+| eval Member_Account_Name = mvindex(Account_Name,1)
+| eval Group_Security_ID = mvindex(Security_ID,2)
+| table _time Subject_Security_ID Member_Security_ID Member_Account_Name Group_Security_ID

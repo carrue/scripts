@@ -1,0 +1,6 @@
+index="main" EventCode=4720
+| eval Created_By = mvindex(Account_Name,0)
+| eval Created_By_Domain = mvindex(Account_Domain,0)
+| eval Account_Created = mvindex(Account_Name,1)
+| eval Account_Created_Domain = mvindex(Account_Domain,0)
+| table Created_By Account_Created Account_Created_Domain SAM_Account_Name Display_Name User_Principal_Name _time

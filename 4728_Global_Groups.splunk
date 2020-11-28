@@ -1,0 +1,11 @@
+index=* EventCode=4728
+| rex mode=sed field="Account_Name" "s/CN=//g"
+| rex mode=sed field="Account_Name" "s/cn=//g"
+| rex mode=sed field="Account_Name" "s/,OU.*//g"
+| rex mode=sed field="Account_Name" "s/\\\//g"
+| eval Message=split(Message,".")
+| eval Subject_Security_ID = mvindex(Security_ID,0)
+| eval Member_Security_ID = mvindex(Security_ID,1)
+| eval Member_Account_Name = mvindex(Account_Name,1)
+| eval Group_Group_Name = mvindex(Group_Name,0)
+| table _time Subject_Security_ID Member_Security_ID Member_Account_Name Group_Group_Name

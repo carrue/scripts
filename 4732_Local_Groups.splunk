@@ -1,0 +1,8 @@
+index=* EventCode=4732
+| eval Message=split(Message,".")
+| eval Computer=split(ComputerName,".")
+| eval ShortMessage=mvindex(Message,0)
+| eval ShortComputer=mvindex(Computer,0)
+| eval Performed_By = mvindex(Account_Name,0)
+| eval Account = mvindex(Security_ID,1)
+| table ShortComputer Performed_By Account Group_Domain Group_Name _time
